@@ -3,13 +3,31 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Web3ReactProvider, createWeb3ReactRoot } from '@web3-react/core'
+import { Web3Provider } from "@ethersproject/providers";
+import { Provider } from "react-redux";
+import store from "./state";
+import { NetworkContextName } from "./constants";
+
+function getLibrary(provider: any): Web3Provider {
+  const library = new Web3Provider(provider, "any");
+  return library;
+}
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+const Web3ProviderNetwork = createWeb3ReactRoot(NetworkContextName);
+
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <Web3ReactProvider getLibrary={getLibrary}>
+        <Web3ProviderNetwork getLibrary={getLibrary}>
+          <App />
+        </Web3ProviderNetwork>
+      </Web3ReactProvider>
+    </Provider>
   </React.StrictMode>
 );
 
