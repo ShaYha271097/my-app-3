@@ -1,5 +1,5 @@
 
-import { getContract } from "./../utils";
+import { getContract } from "../utils";
 import { useMemo } from "react";
 
 import { Contract } from "@ethersproject/contracts";

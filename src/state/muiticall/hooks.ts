@@ -71,8 +71,8 @@ function useCallsData(
   const { chainId } = useActiveWeb3React();
   const callResults = useSelector<AppState,AppState["multicall"]["callResults"]>(state => state.multicall.callResults);
   const dispatch = useDispatch<AppDispatch>();
-  console.log(callResults)
-  console.log(dispatch)
+
+
   const serializedCallKeys: string = useMemo(
     () =>
       JSON.stringify(
@@ -215,7 +215,7 @@ export function useSingleContractMultipleData(
   );
           
   const results = useCallsData(calls, options);
-          console.log(results)
+   
   const latestBlockNumber = useBlockNumber();
   return useMemo(() => {
     return results.map(result =>

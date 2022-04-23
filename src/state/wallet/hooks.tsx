@@ -26,13 +26,13 @@ export function useETHBalances(
         : [],
     [uncheckedAddresses]
   );
-    console.log(addresses)
+
   const results = useSingleContractMultipleData(
     multicallContract,
     "getEthBalance",
     addresses.map(address => [address])
   );
-  console.log(results)
+
   return useMemo(
     () =>
       addresses.reduce<{ [address: string]: CurrencyAmount }>(
